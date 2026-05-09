@@ -1,51 +1,213 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KK Songs</title>
+    <title>Kishore Kumar All Songs</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+
+        function hideAll() {
+
+            let sections = document.getElementsByClassName("section");
+
+            for (let i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+        }
+
+        function showSection(id) {
+
+            hideAll();
+
+            document.getElementById(id).style.display = "block";
+        }
+
+    </script>
+
 </head>
+
 <body>
 
-<h1>KK Songs Collection</h1>
+<h1>Kishore Kumar All Songs</h1>
 
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Sl No</th>
-        <th>Song Name</th>
-        <th>Movie</th>
-        <th>Co-Artist / Solo</th>
-        <th>Musician</th>
-        <th>Lyricist</th>
-        <th>Play</th>
-    </tr>
+<button onclick="showSection('mainMenu')">
+    Open Categories
+</button>
 
-    <tr>
-        <td>00001</td>
-        <td>Banka Sipaiya Ghar Jaye To</td>
-        <td>Aath Din</td>
-        <td>Solo</td>
-        <td>S. D. Burman</td>
-        <td>Gopal Singh Nepali, Qamar Jalalabadi</td>
-        <td>
-            <a href="https://drive.google.com/file/d/1A9NOIfKOxETtuG7BxrugC7ZXi3thkJy3/view?usp=sharing" target="_blank">
-                Play Song
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>00002</td>
-        <td>Rangeela Rangeela</td>
-        <td>Shikari</td>
-        <td>Arun Kumar, Paro</td>
-        <td>S. D. Burman</td>
-        <td>NA</td>
-        <td>
-            <a href="https://drive.google.com/file/d/1daLMKu1HDtQkFyStpx4rKpxzYcKpAGZZ/view?usp=drive_link" target="_blank">
-                Play Song
-            </a>
-        </td>
-    </tr>
+<!-- MAIN MENU -->
 
-</table>
+<div id="mainMenu" class="section">
+
+    <h2>Select Category</h2>
+
+    <button onclick="showSection('bengaliModern')">
+        Bengali-Modern
+    </button>
+
+    <button onclick="showSection('bengaliMovies')">
+        Bengali-Movies
+    </button>
+
+    <button onclick="showSection('hindiMovies')">
+        Hindi-Movies
+    </button>
+
+</div>
+
+<!-- BENGALI MODERN -->
+
+<div id="bengaliModern" class="section">
+
+    <h2>Bengali-Modern</h2>
+
+    <p>Song list here...</p>
+
+    <button onclick="showSection('mainMenu')">
+        Back
+    </button>
+
+</div>
+
+<!-- BENGALI MOVIES -->
+
+<div id="bengaliMovies" class="section">
+
+    <h2>Bengali-Movies</h2>
+
+    <p>Song list here...</p>
+
+    <button onclick="showSection('mainMenu')">
+        Back
+    </button>
+
+</div>
+
+<!-- HINDI MOVIES -->
+
+<div id="hindiMovies" class="section">
+
+    <h2>Hindi Movies - Select Year</h2>
+
+    <button onclick="showSection('year1961')">
+        1961
+    </button>
+
+    <button onclick="showSection('year1962')">
+        1962
+    </button>
+
+    <button onclick="showSection('year1963')">
+        1963
+    </button>
+
+    <br><br>
+
+    <button onclick="showSection('mainMenu')">
+        Back
+    </button>
+
+</div>
+
+<!-- YEAR 1961 -->
+
+<div id="year1961" class="section">
+
+    <h2>Hindi Movies - 1961</h2>
+
+    <table>
+
+        <tr>
+            <th>Sl No</th>
+            <th>Song</th>
+            <th>Movie</th>
+            <th>Play</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>Ek Panchi Deewana</td>
+            <td>Neela Aasmaan</td>
+
+            <td>
+                <a href="https://drive.google.com/file/d/FILE_ID/view"
+                   target="_blank">
+
+                    Play
+
+                </a>
+            </td>
+
+        </tr>
+
+    </table>
+
+    <br>
+
+    <button onclick="showSection('hindiMovies')">
+        Back to Years
+    </button>
+
+</div>
+
+<!-- YEAR 1962 -->
+
+<div id="year1962" class="section">
+
+    <h2>Hindi Movies - 1962</h2>
+
+    <p>1962 Songs Here...</p>
+
+    <button onclick="showSection('hindiMovies')">
+        Back to Years
+    </button>
+
+</div>
+
+<!-- YEAR 1963 -->
+
+<div id="year1963" class="section">
+
+    <h2>Hindi Movies - 1963</h2>
+
+    <p>1963 Songs Here...</p>
+
+    <button onclick="showSection('hindiMovies')">
+        Back to Years
+    </button>
+
+</div>
 
 </body>
 </html>
