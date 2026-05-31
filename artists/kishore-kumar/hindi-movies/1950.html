@@ -21,5 +21,64 @@
 			<tr><td>00018</td><td>Mohabbat Ka Chota Sa Ek Aashiyana</td><td>Pyar</td><td>Solo</td><td>S. D. Burman</td><td>Rajendra Krishan</td><td><a href="https://drive.google.com/file/d/1PtCiw_HwbpyDdxJ_DTb4w7HTlBS-e48K/view?usp=drive_link" target="_blank">Play</a></td></tr>
 			<tr><td>00019</td><td>Jalti Hai Duniya Tera Mera</td><td>Pyar</td><td>Shamshad Begum</td><td>S. D. Burman</td><td>Rajendra Krishan</td><td><a href="https://drive.google.com/file/d/1XsqB60egnjX6XsqKYroPqrlcYoMCbGoE/view?usp=drive_link" target="_blank">Play</a></td></tr>
 		</table>
+		<script>
+		    const rowsPerPage = 10;
+		    let currentPage = 1;
+		
+		    const table = document.querySelector("table");
+		    const rows = Array.from(table.querySelectorAll("tr")).slice(1); // exclude header row
+		    const totalPages = Math.ceil(rows.length / rowsPerPage);
+		
+		    const paginationDiv = document.createElement("div");
+		    paginationDiv.id = "pagination";
+		    paginationDiv.style.marginTop = "15px";
+		    paginationDiv.style.textAlign = "center";
+		
+		    table.after(paginationDiv);
+		
+		    function showPage(page) {
+		        currentPage = page;
+		
+		        const start = (page - 1) * rowsPerPage;
+		        const end = start + rowsPerPage;
+		
+		        rows.forEach((row, index) => {
+		            row.style.display = (index >= start && index < end) ? "" : "none";
+		        });
+		
+		        renderPagination();
+		    }
+		
+		    function renderPagination() {
+		        paginationDiv.innerHTML = "";
+		
+		        const prevButton = document.createElement("button");
+		        prevButton.innerText = "Previous";
+		        prevButton.disabled = currentPage === 1;
+		        prevButton.onclick = () => showPage(currentPage - 1);
+		        paginationDiv.appendChild(prevButton);
+		
+		        for (let i = 1; i <= totalPages; i++) {
+		            const pageButton = document.createElement("button");
+		            pageButton.innerText = i;
+		            pageButton.style.margin = "0 5px";
+		
+		            if (i === currentPage) {
+		                pageButton.style.fontWeight = "bold";
+		                pageButton.style.backgroundColor = "#ddd";
+		            }
+		
+		            pageButton.onclick = () => showPage(i);
+		            paginationDiv.appendChild(pageButton);
+		        }
+		
+		        const nextButton = document.createElement("button");
+		        nextButton.innerText = "Next";
+		        nextButton.disabled = currentPage === totalPages;
+		        nextButton.onclick = () => showPage(currentPage + 1);
+		        paginationDiv.appendChild(nextButton);
+		    }
+		    showPage(1);
+		</script>		
 	</body>
 </html>
