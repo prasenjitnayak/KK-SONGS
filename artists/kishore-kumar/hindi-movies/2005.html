@@ -7,5 +7,67 @@
 	<body>
 		<h1>Kishore Kumar - Hindi Movies - 2005</h1>
 		<a class="btn" href="index.html">Back to Years</a>
+		<table>
+			<tr><th>Sl No</th><th>Song</th><th>Movie</th><th>Co-Artist / Solo</th><th>Musician</th><th>Lyricist</th><th>Play</th></tr>
+		</table>
+		<script>
+		    const rowsPerPage = 10;
+		    let currentPage = 1;
+		
+		    const table = document.querySelector("table");
+		    const rows = Array.from(table.querySelectorAll("tr")).slice(1); // exclude header row
+		    const totalPages = Math.ceil(rows.length / rowsPerPage);
+		
+		    const paginationDiv = document.createElement("div");
+		    paginationDiv.id = "pagination";
+		    paginationDiv.style.marginTop = "15px";
+		    paginationDiv.style.textAlign = "center";
+		
+		    table.after(paginationDiv);
+		
+		    function showPage(page) {
+		        currentPage = page;
+		
+		        const start = (page - 1) * rowsPerPage;
+		        const end = start + rowsPerPage;
+		
+		        rows.forEach((row, index) => {
+		            row.style.display = (index >= start && index < end) ? "" : "none";
+		        });
+		
+		        renderPagination();
+		    }
+		
+		    function renderPagination() {
+		        paginationDiv.innerHTML = "";
+		
+		        const prevButton = document.createElement("button");
+		        prevButton.innerText = "Previous";
+		        prevButton.disabled = currentPage === 1;
+		        prevButton.onclick = () => showPage(currentPage - 1);
+		        paginationDiv.appendChild(prevButton);
+		
+		        for (let i = 1; i <= totalPages; i++) {
+		            const pageButton = document.createElement("button");
+		            pageButton.innerText = i;
+		            pageButton.style.margin = "0 5px";
+		
+		            if (i === currentPage) {
+		                pageButton.style.fontWeight = "bold";
+		                pageButton.style.backgroundColor = "#ddd";
+		            }
+		
+		            pageButton.onclick = () => showPage(i);
+		            paginationDiv.appendChild(pageButton);
+		        }
+		
+		        const nextButton = document.createElement("button");
+		        nextButton.innerText = "Next";
+		        nextButton.disabled = currentPage === totalPages;
+		        nextButton.onclick = () => showPage(currentPage + 1);
+		        paginationDiv.appendChild(nextButton);
+		    }
+		    showPage(1);
+		</script>		
 	</body>
 </html>
