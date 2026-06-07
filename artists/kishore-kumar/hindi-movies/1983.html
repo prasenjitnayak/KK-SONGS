@@ -39,35 +39,44 @@
 		        renderPagination();
 		    }
 		
-		    function renderPagination() {
-		        paginationDiv.innerHTML = "";
-		
-		        const prevButton = document.createElement("button");
-		        prevButton.innerText = "Previous";
-		        prevButton.disabled = currentPage === 1;
-		        prevButton.onclick = () => showPage(currentPage - 1);
-		        paginationDiv.appendChild(prevButton);
-		
-		        for (let i = 1; i <= totalPages; i++) {
-		            const pageButton = document.createElement("button");
-		            pageButton.innerText = i;
-		            pageButton.style.margin = "0 5px";
-		
-		            if (i === currentPage) {
-		                pageButton.style.fontWeight = "bold";
-		                pageButton.style.backgroundColor = "#ddd";
-		            }
-		
-		            pageButton.onclick = () => showPage(i);
-		            paginationDiv.appendChild(pageButton);
-		        }
-		
-		        const nextButton = document.createElement("button");
-		        nextButton.innerText = "Next";
-		        nextButton.disabled = currentPage === totalPages;
-		        nextButton.onclick = () => showPage(currentPage + 1);
-		        paginationDiv.appendChild(nextButton);
-		    }
+			function renderPagination() {
+			    paginationDiv.innerHTML = "";
+			
+			    const prevButton = document.createElement("button");
+			    prevButton.innerText = "Previous";
+			    prevButton.disabled = currentPage === 1;
+			    prevButton.onclick = () => showPage(currentPage - 1);
+			    paginationDiv.appendChild(prevButton);
+			
+			    for (let i = 1; i <= totalPages; i++) {
+			        const pageButton = document.createElement("button");
+			        pageButton.innerText = i;
+			        pageButton.style.margin = "0 5px";
+			        pageButton.style.padding = "6px 10px";
+			        pageButton.style.cursor = "pointer";
+			
+			        // selected page number style
+			        if (i === currentPage) {
+			            pageButton.style.backgroundColor = "#007bff";
+			            pageButton.style.color = "white";
+			            pageButton.style.fontWeight = "bold";
+			            pageButton.style.border = "1px solid #007bff";
+			        } else {
+			            pageButton.style.backgroundColor = "white";
+			            pageButton.style.color = "#007bff";
+			            pageButton.style.border = "1px solid #007bff";
+			        }
+			
+			        pageButton.onclick = () => showPage(i);
+			        paginationDiv.appendChild(pageButton);
+			    }
+			
+			    const nextButton = document.createElement("button");
+			    nextButton.innerText = "Next";
+			    nextButton.disabled = currentPage === totalPages;
+			    nextButton.onclick = () => showPage(currentPage + 1);
+			    paginationDiv.appendChild(nextButton);
+			}
 		    showPage(1);
 		</script>		
 	</body>
