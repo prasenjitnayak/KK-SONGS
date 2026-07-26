@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kishore Kumar - Hindi Extra-Songs</title>
+		<link rel="stylesheet" href="../../../css/style.css">
+	</head>
+	<body>
+		<h1>Kishore Kumar - Hindi Extra-Songs</h1>
+		<a class="btn" href="index.html">Back to Years</a>
+		<table>
+			<tr><th>Sl No</th><th>Song</th><th>Movie</th><th>Co-Artist / Solo</th><th>Musician</th><th>Lyricist</th><th>Play</th></tr>
+			<tr><td>001</td><td>Zindagi Jua Hai</td><td>Non Film</td><td>Solo</td><td>Salil Chowdhury</td><td>NA</td><td><a href="https://drive.google.com/file/d/1jaeTrQtdIQi3jKuzIX7F4oZ99W9r1eQL/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>002</td><td>Ladkiyon Ko Chahiye Woh Ladkon</td><td>Non Film</td><td>Solo</td><td>Madan Mohan</td><td>NA</td><td><a href="https://drive.google.com/file/d/1lm1u-ZoILbRmzfhgORUPe_9viYpKDWTa/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>003</td><td>Aaj Mujhe Jal Jaane Bhi Do</td><td>Non Film</td><td>Solo</td><td>Madan Mohan</td><td>NA</td><td><a href="https://drive.google.com/file/d/1idNOvNo_1c0LnqDomMpJ9bQGzvStX5Zu/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>004</td><td>Pandrah August Ki Punyatithi</td><td>Non Film</td><td>R.P. Sharma</td><td>Bala Singh</td><td>Keshav Trivedi</td><td><a href="https://drive.google.com/file/d/1XdBoQNJ8p0SIc3ZgpLiyRIJkPeD3twrV/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>005</td><td>O Bhoolane Wale</td><td>Non Film</td><td>Solo</td><td>Bholanath</td><td>Raja Mehadi Ali Khan</td><td><a href="https://drive.google.com/file/d/1LYQaofFKX9ObrKNEpKyQoWyCs9FZDByO/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>006</td><td>Jis Dil Ne Mohabbat Ki</td><td>Non Film</td><td>Solo</td><td>Kewal Sharma</td><td>Ramesh Gupta</td><td><a href="https://drive.google.com/file/d/1xpOM1D8jIV3Ylf6moA-bsAtrhve6YZSC/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>007</td><td>Aa Aa Aa O Deewane</td><td>Hungama</td><td>Asha Bhosle</td><td>R.D.Burman</td><td>Anjaan</td><td><a href="https://drive.google.com/file/d/1eg3lCOsZrmJORXLE4C4LGtygmBVIxrFI/view?usp=drive_link" target="_blank">Play</a></td></tr>
+			<tr><td>008</td><td>Pyar Kiya Jhak Mari</td><td>Paisa Hi Paisa</td><td>Solo</td><td>Anil Biswas</td><td>Majrooh Sultanpuri</td><td><a href="https://drive.google.com/file/d/1GZyBFjzHYHp0vu6ZkLTwIGKVskvbrSsZ/view?usp=drive_link" target="_blank">Play</a></td></tr>
+		</table>
+		<script>
+		    const rowsPerPage = 10;
+		    let currentPage = 1;
+		
+		    const table = document.querySelector("table");
+		    const rows = Array.from(table.querySelectorAll("tr")).slice(1); // exclude header row
+		    const totalPages = Math.ceil(rows.length / rowsPerPage);
+		
+		    const paginationDiv = document.createElement("div");
+		    paginationDiv.id = "pagination";
+		    paginationDiv.style.marginTop = "15px";
+		    paginationDiv.style.textAlign = "center";
+		
+		    table.after(paginationDiv);
+		
+		    function showPage(page) {
+		        currentPage = page;
+		
+		        const start = (page - 1) * rowsPerPage;
+		        const end = start + rowsPerPage;
+		
+		        rows.forEach((row, index) => {
+		            row.style.display = (index >= start && index < end) ? "" : "none";
+		        });
+		
+		        renderPagination();
+		    }
+		
+			function renderPagination() {
+				paginationDiv.innerHTML = "";
 
+				const prevButton = document.createElement("button");
+				prevButton.innerText = "Previous";
+				prevButton.style.margin = "0 5px";
+				prevButton.style.padding = "6px 10px";
+				prevButton.style.cursor = "pointer";
+				prevButton.style.border = "1px solid #007bff";
+
+				if (currentPage === 1) {
+					prevButton.disabled = true;
+					prevButton.style.backgroundColor = "#e9ecef";
+					prevButton.style.color = "#6c757d";
+					prevButton.style.cursor = "not-allowed";
+					prevButton.style.border = "1px solid #ced4da";
+				} else {
+					prevButton.style.backgroundColor = "white";
+					prevButton.style.color = "#007bff";
+					prevButton.onclick = () => showPage(currentPage - 1);
+				}
+
+				paginationDiv.appendChild(prevButton);
+
+				for (let i = 1; i <= totalPages; i++) {
+					const pageButton = document.createElement("button");
+					pageButton.innerText = i;
+					pageButton.style.margin = "0 5px";
+					pageButton.style.padding = "6px 10px";
+					pageButton.style.cursor = "pointer";
+
+					if (i === currentPage) {
+						pageButton.style.backgroundColor = "#007bff";
+						pageButton.style.color = "white";
+						pageButton.style.fontWeight = "bold";
+						pageButton.style.border = "1px solid #007bff";
+					} else {
+						pageButton.style.backgroundColor = "white";
+						pageButton.style.color = "#007bff";
+						pageButton.style.border = "1px solid #007bff";
+					}
+
+					pageButton.onclick = () => showPage(i);
+					paginationDiv.appendChild(pageButton);
+				}
+
+				const nextButton = document.createElement("button");
+				nextButton.innerText = "Next";
+				nextButton.style.margin = "0 5px";
+				nextButton.style.padding = "6px 10px";
+				nextButton.style.cursor = "pointer";
+				nextButton.style.border = "1px solid #007bff";
+
+				if (currentPage === totalPages) {
+					nextButton.disabled = true;
+					nextButton.style.backgroundColor = "#e9ecef";
+					nextButton.style.color = "#6c757d";
+					nextButton.style.cursor = "not-allowed";
+					nextButton.style.border = "1px solid #ced4da";
+				} else {
+					nextButton.style.backgroundColor = "white";
+					nextButton.style.color = "#007bff";
+					nextButton.onclick = () => showPage(currentPage + 1);
+				}
+
+				paginationDiv.appendChild(nextButton);
+			}
+		    showPage(1);
+		</script>		
+	</body>
+</html>
